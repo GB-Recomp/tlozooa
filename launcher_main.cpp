@@ -62,7 +62,11 @@ int main(int argc, char* argv[]) {
         print_games();
         return 1;
     }
-    fprintf(stderr, "[LAUNCH] Starting %s [%s]\n", g_games[0].title, g_games[0].id);
     gb_platform_set_launcher_return_enabled(false);
-    return g_games[0].main_fn(argc, argv);
+    for (;;) {
+        fprintf(stderr, "[LAUNCH] Starting %s [%s]\n", g_games[0].title, g_games[0].id);
+        int rc = g_games[0].main_fn(argc, argv);
+        if (gb_platform_consume_restart_requested()) continue;
+        return rc;
+    }
 }
