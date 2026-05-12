@@ -19,6 +19,17 @@ cmake --build . -j$(nproc)
 Produces a `tlozooa` executable (~560 KB with the default MinSizeRel +
 dead-strip profile).
 
+## Required ROM
+
+This build is locked to a single revision:
+
+| Region | Filename in the wild | MD5 |
+|--------|----------------------|-----|
+| USA / Australia | Legend of Zelda, The - Oracle of Ages (USA, Australia).gbc | `c4639cc61c049e5a085526bb6cac03bb` |
+
+The asset loader verifies the SHA-1 on first launch and refuses to run
+on any other dump.
+
 ## Run
 
 Drop your Oracle of Ages ROM next to the executable as `roms/tlozooa.gbc`:
